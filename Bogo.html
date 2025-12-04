@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOGO Offer UI</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f3f3;
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .container {
+        width: 420px;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #ff7faa;
+        margin-bottom: 25px;
+    }
+
+    .box {
+        border: 2px solid #eee;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    .box.active {
+        border-color: #ff6d9c;
+        background: #ffeaf1;
+    }
+
+    .most-popular {
+        position: absolute;
+        top: -12px;
+        right: 10px;
+        background: #ff6d9c;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+    }
+
+    .discount-tag {
+        background: #ff6d9c;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+        color: #aaa;
+        font-size: 13px;
+    }
+
+    select {
+        padding: 5px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .price {
+        float: right;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .footer-total {
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px;
+        background: #ff6d9c;
+        border: none;
+        color: white;
+        font-size: 18px;
+        border-radius: 12px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    .free-delivery {
+        color: #ff6d9c;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>YAY! It’s BOGO</h2>
+
+    <!-- 1 Unit -->
+    <div class="box" onclick="selectBox(1)">
+        <input type="radio" name="unit" id="u1">
+        <label><strong>1 Unit</strong></label>
+        <span class="discount-tag">10% Off</span>
+        <span class="price">$10.00 USD</span>
+        <div class="old-price">$24.00 USD</div>
+    </div>
+
+    <!-- 2 Units -->
+    <div class="box active" id="popularBox" onclick="selectBox(2)">
+        <div class="most-popular">MOST POPULAR</div>
+        <input type="radio" name="unit" id="u2" checked>
+        <label><strong>2 Unit</strong></label>
+        <span class="discount-tag">20% Off</span>
+        <span class="price">$18.00 USD</span>
+        <div class="old-price">$24.00 USD</div>
+
+        <br><br>
+        <div>
+            <div>#1 
+                <select>
+                    <option>S</option><option>M</option><option>L</option>
+                </select>
+                <select>
+                    <option>Black</option><option>Red</option><option>Blue</option>
+                </select>
+            </div>
+
+            <br>
+            <div>#2
+                <select>
+                    <option>S</option><option>M</option><option>L</option>
+                </select>
+                <select>
+                    <option>Colour</option><option>Black</option><option>Red</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 Units -->
+    <div class="box" onclick="selectBox(3)">
+        <input type="radio" name="unit" id="u3">
+        <label><strong>3 Unit</strong></label>
+        <span class="discount-tag">30% Off</span>
+        <span class="price">$24.00 USD</span>
+        <div class="old-price">$24.00 USD</div>
+    </div>
+
+    <div class="free-delivery">Free Delivery</div>
+
+    <div class="footer-total" id="total">Total : $18.00 USD</div>
+    <button class="btn">+ Add to Cart</button>
+</div>
+
+<script>
+function selectBox(num) {
+    document.querySelectorAll(".box").forEach(b => b.classList.remove("active"));
+    const prices = {1: 10, 2: 18, 3: 24};
+
+    document.querySelector(`#u${num}`).checked = true;
+    const selected = document.querySelector(`#u${num}`).parentElement;
+
+    selected.classList.add("active");
+    document.getElementById("total").innerHTML = "Total : $" + prices[num] + ".00 USD";
+}
+</script>
+
+</body>
+</html>
